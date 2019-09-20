@@ -1,0 +1,10 @@
+{
+  "x": {
+    "desktop": [
+      ["(min-width: 900px)", "main.css"],
+      ["(max-width: 850px)", "satu.css"],
+      ["(max-width: 600px)", "dua.css"]
+    ],
+    "default": "empat.css"
+  }
+}
