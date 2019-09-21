@@ -120,7 +120,7 @@ let rvo = function(w) {
       // console.log(window.screen.orientation.type);
     });
     if (window.screen.orientation.type == "portrait-primary") {
-      ls(w.default);
+      ls(w.mobile);
     }
   }
 

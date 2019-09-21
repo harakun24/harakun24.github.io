@@ -5,6 +5,12 @@
       ["(max-width: 850px)", "satu.css"],
       ["(max-width: 600px)", "dua.css"]
     ],
-    "default": "empat.css"
-  }
+    "mobile": "empat.css"
+  },
+  "menu": [
+    ["Home", "#home"],
+    ["profil", "#profil"],
+    ["kontak", "#kontak"],
+    ["about", "#about"]
+  ]
 }

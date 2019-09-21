@@ -1,14 +1,17 @@
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="jquery.js"></script>
     <script src="dim.js"></script>
   </head>
   <body>
     <script>
-      open("data.json", json => {
-        rvo(json.x);
-        alert("tes");
-      });
+      let wrapper = createUI({ content: "div", class: "wrapper" });
+      // wrapper.append(window.location);
+      let loc = window.location.toString();
+      let u = loc.split("#!/");
+      wrapper.append(u[1]);
+      wrapper.render();
     </script>
   </body>
 </html>
