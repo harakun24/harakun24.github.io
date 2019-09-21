@@ -5,7 +5,7 @@ let using = function(url) {
     console.log("sukses nambah:" + url);
   });
 };
-
+let route = {};
 let app = $(document);
 let createUI = function(type) {
   // let result = document.createElement(type);
@@ -129,20 +129,28 @@ let rvo = function(w) {
     val[0].addListener(myFunction); // Attach listener function on state changes
   });
 };
-
-let route = function(json) {
+route.path = [];
+route.open = function() {
   let loc = window.location.toString();
   let u = loc.split("/");
   // console.log(u[3]);
-  $.each(json.menu, (k, v) => {
-    if (u[3] == v[0]) {
+  let num = false;
+  $.each(route.path, (k, v) => {
+    if (u[3] == v.name) {
       // wrapper.append(v[1]);
-      $.get(v[1], data => {
+      num = true;
+      $.get(v.url, data => {
         document.body.innerHTML = data;
       });
     }
   });
+  if (!num && (u[3] == "" || u[3] == "#!")) {
+    $.get(route.default, data => {
+      document.body.innerHTML = data;
+    });
+  } else if (!num && !u[3] == "") {
+    $.get(route.error, data => {
+      document.body.innerHTML = data;
+    });
+  }
 };
-open("data.json", json => {
-  route(json);
-});

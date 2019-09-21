@@ -11,8 +11,14 @@
         // wrapper.append(window.location);
 
         wrapper.render();
+        $.each(json.menu, (k, v) => {
+          route.path.push({ name: v[0], url: v[1] });
+        });
+        route.default = "home.html";
+        route.error = "404.html";
+        route.path.push({ name: "status", url: "status.php" });
+        route.open();
       });
     </script>
   </body>
 </html>
-<!-- sebvfsbfbsbf -->
