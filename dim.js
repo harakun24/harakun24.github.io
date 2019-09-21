@@ -129,3 +129,20 @@ let rvo = function(w) {
     val[0].addListener(myFunction); // Attach listener function on state changes
   });
 };
+
+let route = function(json) {
+  let loc = window.location.toString();
+  let u = loc.split("/");
+  // console.log(u[3]);
+  $.each(json.menu, (k, v) => {
+    if (u[3] == v[0]) {
+      // wrapper.append(v[1]);
+      $.get(v[1], data => {
+        document.body.innerHTML = data;
+      });
+    }
+  });
+};
+open("data.json", json => {
+  route(json);
+});

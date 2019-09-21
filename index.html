@@ -6,12 +6,12 @@
   </head>
   <body>
     <script>
-      let wrapper = createUI({ content: "div", class: "wrapper" });
-      // wrapper.append(window.location);
-      let loc = window.location.toString();
-      let u = loc.split("#!/");
-      wrapper.append(u[1]);
-      wrapper.render();
+      open("data.json", json => {
+        let wrapper = createUI({ content: "div", class: "wrapper" });
+        // wrapper.append(window.location);
+
+        wrapper.render();
+      });
     </script>
   </body>
 </html>

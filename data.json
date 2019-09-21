@@ -8,9 +8,9 @@
     "mobile": "empat.css"
   },
   "menu": [
-    ["Home", "#home"],
-    ["profil", "#profil"],
-    ["kontak", "#kontak"],
-    ["about", "#about"]
+    ["home", "home.html"],
+    ["profil", "profil.html"],
+    ["kontak", "kontak.html"],
+    ["about", "about.html"]
   ]
 }
