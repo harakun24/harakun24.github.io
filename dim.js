@@ -1,21 +1,19 @@
 var tmmp, tfile, nfile, k;
-let using = function(url) {
+using = function(url) {
   $.get(url, data => {
     $("head").append("<style>" + data + "</style>");
     console.log("sukses nambah:" + url);
   });
 };
-let route = {};
-let app = $(document);
-let createUI = function(type) {
-  // let result = document.createElement(type);
+app = $(document);
+createUI = function(type) {
   let result = document.createElement(type.content);
   $.each(type, (key, val) => {
     if (key == "content") {
     } else if (key == "css") {
       let sname = "";
       $.each(val, (k, v) => {
-        sname += k + ":" + v + ";";
+        sname += k + ":" + v + "";
       });
       result.setAttribute("style", sname);
     } else if (key == "val") {
@@ -39,14 +37,13 @@ let createUI = function(type) {
   result.toHead = () => {
     document.head.appendChild(result);
   };
-  //document.body.appendChild(result);
 
   result.unset = () => {
     document.body.removeChild(result);
   };
   return result;
 };
-let open = function(data, runer) {
+open = function(data, runer) {
   app.ready(() => {
     setTimeout(() => {
       $.get(data, jssd => {
@@ -55,13 +52,12 @@ let open = function(data, runer) {
     }, 0);
   });
 };
-let async = fun => {
+async = fun => {
   setTimeout(() => {
     fun();
   }, 0);
 };
-let fsave = (ft, name, type) => {
-  //alert("text");
+fsave = (ft, name, type) => {
   var file = new Blob([ft], { type: type });
   if (window.navigator.msSaveOrOpenBlob)
     window.navigator.msSaveBlob(file, name);
@@ -79,19 +75,16 @@ let fsave = (ft, name, type) => {
   }
 };
 
-// let style = createUI("style");
-// style.attr({ id: "mediaq" });
-// document.head.appendChild(style);
-let style = createUI({ content: "style", id: "mediaq" });
+style = createUI({ content: "style", id: "mediaq" });
 style.toHead();
 
-let ls = url => {
+ls = url => {
   $.get(url, data => {
     $("#mediaq").html(data);
   });
 };
 
-let getText = (url, fun) => {
+getText = (url, fun) => {
   let result = "";
   $.get(
     url,
@@ -104,7 +97,7 @@ let getText = (url, fun) => {
   return result;
 };
 
-let rvo = function(w) {
+repaint = function(w) {
   let x = [];
   $.each(w.desktop, (k, v) => {
     x.push([window.matchMedia(v[0]), v[1]]);
@@ -114,43 +107,78 @@ let rvo = function(w) {
     $.each(x, (key, val) => {
       if (val[0].matches) {
         ls(val[1]);
-        // alert(val[1]);
         num = true;
       }
-      // console.log(window.screen.orientation.type);
     });
     if (window.screen.orientation.type == "portrait-primary") {
       ls(w.mobile);
     }
   }
 
-  myFunction(); // Call listener function at run time
+  myFunction();
   $.each(x, (key, val) => {
-    val[0].addListener(myFunction); // Attach listener function on state changes
+    val[0].addListener(myFunction);
   });
 };
-route.path = [];
-route.open = function() {
-  let loc = window.location.toString();
-  let u = loc.split("/");
-  // console.log(u[3]);
-  let num = false;
-  $.each(route.path, (k, v) => {
-    if (u[3] == v.name) {
-      // wrapper.append(v[1]);
-      num = true;
-      $.get(v.url, data => {
-        document.body.innerHTML = data;
-      });
-    }
+gElement = function(param) {
+  let temp = $(param);
+  temp.child = function(child) {
+    temp.append(child);
+  };
+  temp.attr = val => {
+    $.each(val, function(key, isi) {
+      temp.attr(key, isi);
+    });
+  };
+  temp.toHead = () => {
+    $("head").append(temp);
+  };
+
+  temp.unset = () => {
+    document.body.removeChild(temp);
+  };
+  return temp;
+};
+scope = [];
+bind = function(data, nama) {
+  let res = [];
+  res[0] = nama;
+  if (typeof data == "object") {
+    $.each(data, (k, v) => {
+      if (typeof v == "object") {
+        let result = {};
+        $.each(v, (k, val) => {
+          result[k] = val;
+        });
+
+        res.push(result);
+      } else {
+        let result = {};
+        result[k] = v;
+        res.push(result);
+      }
+    });
+  } else res.push(data);
+
+  scope.push(res);
+};
+include = function(source, data1, target) {
+  let body = gElement(target);
+  let deta = scope.find(s => s[0] == data1);
+  deta.shift();
+  $.each(deta, (k, v) => {
+    $.get(
+      source,
+      data => {
+        let newdata = data;
+        console.log(v);
+        $.each(v, (k, val) => {
+          let str = "$scope." + k;
+          newdata = newdata.replace(str, val);
+        });
+        body.append(newdata);
+      },
+      "text"
+    );
   });
-  if (!num && (u[3] == "" || u[3] == "#!")) {
-    $.get(route.default, data => {
-      document.body.innerHTML = data;
-    });
-  } else if (!num && !u[3] == "") {
-    $.get(route.error, data => {
-      document.body.innerHTML = data;
-    });
-  }
 };

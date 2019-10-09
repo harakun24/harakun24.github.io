@@ -1,16 +1,43 @@
 {
   "x": {
     "desktop": [
-      ["(min-width: 900px)", "main.css"],
-      ["(max-width: 850px)", "satu.css"],
-      ["(max-width: 600px)", "dua.css"]
+      ["(min-width: 1100px)", "style/desktop.css?v=2"],
+      ["(max-width: 950px)", "style/semitab-desk.css"],
+      ["(max-width: 850px)", "style/semi-desktop.css?v=1"],
+      ["(max-width: 600px)", "style/tab-desk.css"]
     ],
-    "mobile": "empat.css"
+    "mobile": "style/empat.css"
   },
-  "menu": [
-    ["home", "home.html"],
-    ["profil", "profil.html"],
-    ["kontak", "kontak.html"],
-    ["about", "about.html"]
+  "list": [
+    {
+      "judul": "Good/Bad",
+      "deskripsi": "Webtoon",
+      "bg": "url(images/gbf.jpg)"
+    },
+    {
+      "judul": "LOOKISM",
+      "deskripsi": "Webtoon",
+      "bg": "url(images/lks.jpg)"
+    },
+    {
+      "judul": "Mr. 2",
+      "deskripsi": "ToryComic",
+      "bg": "url(images/mr2.jpg)"
+    },
+    {
+      "judul": "Good/Bad",
+      "deskripsi": "Webtoon",
+      "bg": "url(images/gbf.jpg)"
+    },
+    {
+      "judul": "LOOKISM",
+      "deskripsi": "Webtoon",
+      "bg": "url(images/lks.jpg)"
+    },
+    {
+      "judul": "Mr. 2",
+      "deskripsi": "ToryComic",
+      "bg": "url(images/mr2.jpg)"
+    }
   ]
 }

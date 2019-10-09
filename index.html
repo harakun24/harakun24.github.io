@@ -1,24 +1,20 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="jquery.js"></script>
-    <script src="dim.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./jquery.js"></script>
+    <script src="./dim.js?v=3"></script>
+    <title>Document</title>
   </head>
   <body>
+    <h1>SOON</h1>
     <script>
-      open("data.json", json => {
-        let wrapper = createUI({ content: "div", class: "wrapper" });
-        // wrapper.append(window.location);
-
-        wrapper.render();
-        $.each(json.menu, (k, v) => {
-          route.path.push({ name: v[0], url: v[1] });
-        });
-        route.default = "home.html";
-        route.error = "404.html";
-        route.path.push({ name: "status", url: "status.php" });
-        route.open();
-      });
+      // open("data.json", json => {
+      //   bind(json.list, "op");
+      //   include("resource/panel.html", "op", "body");
+      // });
     </script>
   </body>
 </html>
